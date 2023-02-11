@@ -2,4 +2,4 @@ server:
   port: 3000
 spring:
   main:
-    web-application-type: none
+    web-application-type: servlet
