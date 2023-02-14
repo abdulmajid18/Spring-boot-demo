@@ -42,4 +42,32 @@ public class AppConfig {
     public ReqScopedBean requestScopedBean() {
         return new ReqScopedBean();
     }
+
+    @Bean
+    @Scope(value = WebApplicationContext.SCOPE_REQUEST, proxyMode = ScopedProxyMode.TARGET_CLASS)
+    // You need a proxyMode attribute because when web-aware
+    // context is
+    // instantiated, you don't have any HTTP request.
+    // Therefore,
+    // Spring injects the proxy as a dependency and
+    // instantiate the bean when HTTP request is invoked.
+    // OR, in short you can write below which is a shortcut for
+    // above
+    @SessionScope
+    public ReqScopedBean requestScopedBean() {
+        return new ReqScopedBean();
+    }
+
+    @ApplicationScope
+    public ReqScopedBean requestScopedBean() {
+        return new ReqScopedBean();
+    }
+
+    // here "scopeName" is alias for value
+    // interestingly, no shortcut. Also hard coded value for
+    // websocket
+    @Scope(scopeName = "websocket", proxyMode = ScopedProxyMode.TARGET_CLASS)
+    public ReqScopedBean requestScopedBean() {
+        return new ReqScopedBean();
+    }
 }
