@@ -70,4 +70,21 @@ public class AppConfig {
     public ReqScopedBean requestScopedBean() {
         return new ReqScopedBean();
     }
+
+    @Configuration
+    public class FooConfig {
+        @Bean
+        public FooBean fooBean() {
+            return new FooBean();
+        }
+    }
+
+    @Configuration
+    @Import(FooConfig.class)
+    public class BarConfig {
+        @Bean
+        public BarBean barBean() {
+            return new BarBean();
+        }
+    }
 }
