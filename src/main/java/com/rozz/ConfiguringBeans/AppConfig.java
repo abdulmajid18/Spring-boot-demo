@@ -87,4 +87,21 @@ public class AppConfig {
             return new BarBean();
         }
     }
+
+    @Bean
+    public FooBean fooBean() {
+        return new FooBean();
+    }
+
+    @Bean
+    public BarBean barBean() {
+        return new BarBean();
+    }
+
+    @Bean
+    @DependsOn({ "fooBean", "barBean" })
+    public BazBean bazBean() {
+        return new BazBean();
+    }
+
 }
