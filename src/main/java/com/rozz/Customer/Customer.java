@@ -2,7 +2,17 @@ package com.rozz.Customer;
 
 import java.util.Objects;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.SequenceGenerator;
+
+@Entity
 public class Customer {
+    @Id
+    @SequenceGenerator(name = "customer_id_sequence", sequenceName = "customer_id_sequence")
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "customer_id_sequence")
     private Integer id;
     private String name;
     private String email;
@@ -67,9 +77,8 @@ public class Customer {
 
     @Override
     public int hashCode() {
-        return Objects
-                .hash(id, name, email, age);
-    
+        return Objects.hash(id, name, email, age);
+
     }
 
 }
